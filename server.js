@@ -1,4 +1,4 @@
-require("dotenv").config();
+
 
 const express = require("express");
 const mysql = require("mysql");
@@ -31,22 +31,26 @@ app.use(cookieParser());
 //   console.log("Connected to the database.");
 // });
 
-const db = mysql.createConnection({
-  host: process.env.DB_HOST, // Replace with your database host
-  user: process.env.DB_USER, // Replace with your MySQL username
-  password: process.env.DB_PASSWORD, // Replace with your MySQL password
-  database: process.env.DB_NAME, // Replace with your MySQL database name
-  port: process.env.DB_PORT, // Default MySQL port
+const db = mysql.createPool({
+  host: "sql12.freesqldatabase.com",
+  user: "sql12769255",
+  password: "HCTDrj7hqx",
+  database: "sql12769255",
+  port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-db.connect((err) => {
+// Test the database connection
+db.getConnection((err, connection) => {
   if (err) {
-    console.error("Error connecting to the database:", err.stack);
-    return;
+    console.error("❌ Database connection failed:", err);
+  } else {
+    console.log("✅ Connected to the database.");
+    connection.release(); // Release the connection
   }
-  console.log("Connected to the database.");
 });
-
 
 // Student Signup API : http://localhost:5000/student_signup
 app.post("/student_signup", (req, res) => {
