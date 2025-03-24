@@ -79,7 +79,7 @@ app.post("/student_signup", (req, res) => {
 // Student Login API Ends Here
 
 // Student Login API : http://localhost:5000/student_login
-const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
+//const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
 // Student Login API
 app.post("/student_login", (req, res) => {
   const sql = "SELECT * FROM student WHERE email = ? AND password = ?";
