@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 app.use(
   cors({
-    origin: ["https://placement-portal-seven.vercel.app/"],
+    origin: ["https://placement-portal-seven.vercel.app"],
     method: ["POST", "GET"],
     credentials: true,
   })
